@@ -2,35 +2,33 @@
 <html>
     <head>
         <title>Calculator</title>
+        <script src="index.js"></script>
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
 
         <h1>Calculator</h1>
 
-        <div id="frame">
-            <input type="text" id="numField">
-            <div id="buttons">
-                <div class="basic" id="backSpace">C</div>
-                <div class="basic" id="abs">+/-</div>
-                <div class="basic" id="percent">%</div>
-                <div class="operation" id="divi">/</div>
-                <div class="basic">7</div>
-                <div class="basic">8</div>
-                <div class="basic">9</div>
-                <div class="operation" id="mult">x</div>
-                <div class="basic">4</div>
-                <div class="basic">5</div>
-                <div class="basic">6</div>
-                <div class="operation" id="minus">-</div>
-                <div class="basic">1</div>
-                <div class="basic">2</div>
-                <div class="basic">3</div>
-                <div class="operation" id="add">+</div>
-                <div class="basic">0</div>
-                <div class="basic" id="decimal">.</div>
-                <div class="basic" id="delete">del</div>
-                <div class="operation" id="equals">=</div>
+        <div class="calculator">
+            <div class="calculator__display">0</div>
+            <div class="calculator__keys">
+                <button class="key--operator" data-action="add">+</button>
+                <button class="key--operator" data-action="subtract">-</button>
+                <button class="key--operator" data-action="multiply">&times;</button>
+                <button class="key--operator" data-action="divide">÷</button>
+                <button data-action="number">7</button>
+                <button data-action="number">8</button>
+                <button data-action="number">9</button>
+                <button data-action="number">4</button>
+                <button data-action="number">5</button>
+                <button data-action="number">6</button>
+                <button data-action="number">1</button>
+                <button data-action="number">2</button>
+                <button data-action="number">3</button>
+                <button data-action="number">0</button>
+                <button data-action=".">.</button>
+                <button data-action="clear">AC</button>
+                <button class="key--equal" data-action="calculate">=</button>
             </div>
         </div>
     </body>
