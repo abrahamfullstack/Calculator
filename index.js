@@ -12,7 +12,26 @@ window.onload = function StarUp (){
             const displayedNum = display.textContent
             //Use this constant to check custome attribute for last type of key pressed
             const previousKeyType = calculator.dataset.previousKeyType
-            
+            //set previous key type as operator
+            calculator.dataset.previousKeyType = 'operator'
+
+            //calculate function
+            const calculate = (n1, operator, n2) => {
+                let result = ''
+
+                if (operator === 'add') {
+                    result = parseFloat(n1) + parseFloat(n2) 
+                }else if (operator === 'subtract') {
+                    result = parseFloat(n1) - parseFloat(n2)
+                }else if (operator === 'multiply') {
+                    result = parseFloat(n1) * parseFloat(n2)
+                }else if (operator === 'divide') {
+                    result = parseFloat(n1) / parseFloat(n2)
+                }
+
+                return result
+            }
+
             //replace or add number to calculator display
             if (action) {
                 if (displayedNum === '0' || previousKeyType === 'operator') {
@@ -26,7 +45,7 @@ window.onload = function StarUp (){
             if (action) {
                 if (action === 'add' || action === 'subtract' || action === 'multiply' || action === 'divide') {
 
-                    //Custm attributo to get previous key typed
+                    //Custom attribute to get previous key typed
                     calculator.dataset.previousKeyType = 'operator'
                     //custom attribute to get first value entered
                     calculator.dataset.firstValue = displayedNum
@@ -34,11 +53,21 @@ window.onload = function StarUp (){
                     calculator.dataset.operator = action
 
                 }else if (action === 'clear') {
+                    calculator.dataset.previousKeyType = 'clear'
                     display.textContent = '0'
                 }else if (action === '.') {
-                    display.textContent = displayedNum + '.'
+
+                    //Make sure that user has not enter decimal point
+                    if (displayedNum.includes('.')) {
+                        display.textContent = displayedNum
+                    }else if (previousKeyType === 'operator') {
+                        display.textContent = '0.'
+                    }
+
+                    calculator.dataset.previousKeyType = 'decimal'
+
                 }else if (action === 'number'){
-                    console.log('Number')
+                    calculator.dataset.previousKeyType = 'number'
                 }else if (action === 'calculate') {
                     
                     const firstValue = calculator.dataset.firstValue
@@ -54,22 +83,4 @@ window.onload = function StarUp (){
             
         }
     })
-}
-
-//calculate function
-function calculate (n1, operator, n2) {
-
-    let result = ''
-
-    if (operator === 'add') {
-        result = n1 + n2
-    }else if (operator === 'subtract') {
-        result = n1 - n2
-    }else if (operator === 'multiply') {
-        result = n1 * n2
-    }else if (operator === 'divide') {
-        result = n1 / n2
-    }
-
-    return result
 }
